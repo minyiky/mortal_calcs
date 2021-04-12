@@ -8,6 +8,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QTableWidgetItem
 import sys
 import bow_calc_ui
+import bow_calc_single_ui
 
 BowMatEq = namedtuple('BowMatEq', ['str_m', 'str_c', 'rng_m', 'rng_c', 'dura'])
 
@@ -107,9 +108,20 @@ def calculate(checked):
 def clear(checked):
     form.tableWidget.setRowCount(0)
 
+def show_single(checked):
+    popup = Popup()
+    popup.show()
+    popup.exec()
+
 class ExampleApp(QtWidgets.QMainWindow, bow_calc_ui.Ui_MainWindow):
     def __init__(self, parent=None):
         super(ExampleApp, self).__init__(parent)
+        self.setupUi(self)
+
+
+class Popup(QtWidgets.QDialog, bow_calc_single_ui.Ui_Dialog):
+    def __init__(self, parent=None):
+        super(Popup, self).__init__(parent)
         self.setupUi(self)
 
 
@@ -118,5 +130,6 @@ if __name__ == '__main__':
     form = ExampleApp()
     form.pushButton.clicked.connect(calculate)
     form.pushButton_2.clicked.connect(clear)
+    form.pushButton_3.clicked.connect(show_single)
     form.show()
     app.exec_()

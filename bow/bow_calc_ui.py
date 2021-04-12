@@ -12,6 +12,9 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1290, 422)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("C:/Users/Michael/Downloads/favicon.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        MainWindow.setWindowIcon(icon)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.tableWidget = QtWidgets.QTableWidget(self.centralwidget)
@@ -39,7 +42,7 @@ class Ui_MainWindow(object):
         self.groupBox.setGeometry(QtCore.QRect(20, 10, 381, 161))
         self.groupBox.setObjectName("groupBox")
         self.verticalLayoutWidget = QtWidgets.QWidget(self.groupBox)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(9, 19, 371, 131))
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(9, 19, 371, 136))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
@@ -167,7 +170,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Mortal Online 2 - Bow Calculator"))
         self.tableWidget.setSortingEnabled(True)
         item = self.tableWidget.horizontalHeaderItem(0)
         item.setText(_translate("MainWindow", "Bow Type"))
@@ -213,6 +216,6 @@ class Ui_MainWindow(object):
         self.decurve.setText(_translate("MainWindow", "Decurve Bow"))
         self.pushButton.setText(_translate("MainWindow", "Calculate"))
         self.pushButton_2.setText(_translate("MainWindow", "Clear"))
-        self.pushButton_3.setText(_translate("MainWindow", "Update Data"))
+        self.pushButton_3.setText(_translate("MainWindow", "Calculate Single"))
         self.label.setText(_translate("MainWindow", "Character Strength"))
 

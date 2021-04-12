@@ -11,7 +11,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Mortal Online 2 - Bow Calculator</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>C:/Users/Michael/Downloads/favicon.ico</normaloff>C:/Users/Michael/Downloads/favicon.ico</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTableWidget" name="tableWidget">
@@ -85,7 +89,7 @@
        <x>9</x>
        <y>19</y>
        <width>371</width>
-       <height>131</height>
+       <height>136</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
@@ -346,7 +350,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Update Data</string>
+     <string>Calculate Single</string>
     </property>
    </widget>
    <widget class="QSpinBox" name="spinStrength">
