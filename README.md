@@ -64,7 +64,7 @@ Note that there is a parculiarity with how the input is used and it is the oppos
 
 If you find an error in the numbers, please first check that the bow you have made is of impreccable quality and that all lores and bowery skills were at 100 before you began crafting the bow
 
-If that is the case please submit an bug report here https://github.com/minyiky/mortal_calcs/issues/new/choose
+If that is the case please submit a "Bow Calculation Error" here https://github.com/minyiky/mortal_calcs/issues/new/choose
 
 ## Acknowledgemnts
 A massive thank you to the team that made https://www.mortalonlinemap.info/ There data has been very useful and enabled me to make this tool
