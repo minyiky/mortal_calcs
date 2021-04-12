@@ -20,7 +20,7 @@ bowTypes = ('short', 'long')
 bowMats = (
     'denseCrepite',
     'crepite',
-    'spongeWood',
+    'spongewood',
 )
 
 char_strength = 109
@@ -43,37 +43,37 @@ def calculate(checked):
     bowMechanics = []
     bowTypes = []
     bowMats = []
-    if form.denseCrepite.isChecked(): bowMats.append('denseCrepite')
-    if form.crepite.isChecked(): bowMats.append('crepite')
-    if form.molarium.isChecked(): bowMats.append('molarium')
-    if form.greatHorn.isChecked(): bowMats.append('greatHorn')
-    if form.compactHorn.isChecked(): bowMats.append('compHorn')
-    if form.horn.isChecked(): bowMats.append('horn')
-    if form.ironBone.isChecked(): bowMats.append('ironBone')
-    if form.boneTissue.isChecked(): bowMats.append('boneTissue')
-    if form.spongeWood.isChecked(): bowMats.append('spongeWood')
-    if form.whiteWood.isChecked(): bowMats.append('whiteWood')
-    if form.firmWood.isChecked(): bowMats.append('firmWood')
-    if form.greyWood.isChecked(): bowMats.append('greyWood')
-    if form.dappleWood.isChecked(): bowMats.append('dappleWood')
-    if form.brownWood.isChecked(): bowMats.append('brownWood')
-    if form.blackWood.isChecked(): bowMats.append('blackWood')
-    if form.ironWood.isChecked(): bowMats.append('ironWood')
-    if form.stoneWood.isChecked(): bowMats.append('stoneWood')
+    if form.denseCrepite.isChecked(): bowMats.append('Dense Crepite')
+    if form.crepite.isChecked(): bowMats.append('Crepite')
+    if form.molarium.isChecked(): bowMats.append('Molarium')
+    if form.greatHorn.isChecked(): bowMats.append('GreatHorn')
+    if form.compactHorn.isChecked(): bowMats.append('Compact Horn')
+    if form.horn.isChecked(): bowMats.append('Horn')
+    if form.ironBone.isChecked(): bowMats.append('Iron Bone')
+    if form.boneTissue.isChecked(): bowMats.append('Bone Tissue')
+    if form.spongeWood.isChecked(): bowMats.append('Spongewood')
+    if form.whiteWood.isChecked(): bowMats.append('Whitewood')
+    if form.firmWood.isChecked(): bowMats.append('Firmwood')
+    if form.greyWood.isChecked(): bowMats.append('Greywood')
+    if form.dappleWood.isChecked(): bowMats.append('Dapplewood')
+    if form.brownWood.isChecked(): bowMats.append('Brownwood')
+    if form.blackWood.isChecked(): bowMats.append('Blackwood')
+    if form.ironWood.isChecked(): bowMats.append('Ironwood')
+    if form.stoneWood.isChecked(): bowMats.append('Stonewood')
     if len(bowMats) == 0:
-        raise IOError('You must select at least one bow material')
+        print('You must select at least one bow material')
         return
-    if form.short_2.isChecked(): bowTypes.append('short')
-    if form.long_2.isChecked(): bowTypes.append('long')
-    if form.asym_2.isChecked(): bowTypes.append('asym')
+    if form.short_2.isChecked(): bowTypes.append('Short')
+    if form.long_2.isChecked(): bowTypes.append('Long')
+    if form.asym_2.isChecked(): bowTypes.append('Asymmetrical')
     if len(bowTypes) == 0:
-        raise IOError('You must select at least one bow type')
+        print('You must select at least one bow type')
         return
-    if form.decurve.isChecked(): bowMechanics.append('decurve')
-    if form.recurve.isChecked(): bowMechanics.append('recurve')
-    if form.flat.isChecked(): bowMechanics.append('flat')
+    if form.decurve.isChecked(): bowMechanics.append('Decurve')
+    if form.recurve.isChecked(): bowMechanics.append('Recurve')
+    if form.flat.isChecked(): bowMechanics.append('Flat')
     if len(bowMechanics) == 0:
-        raise IOError('You must select at least one bow mechanic')
+        print('You must select at least one bow mechanic')
         return
 
     char_strength = form.spinStrength.value()
@@ -83,27 +83,26 @@ def calculate(checked):
         for Type in bowTypes:
             for leftMat in bowMats:
                 for rightMat in bowMats:
-                    params = BowMatEq(*bowData[f"{Mechanic}_{Type}_{leftMat}_{rightMat}"])
-                    if params.str_m == 0 and params.rng_m == 0:
-                        x = 95
-                    if params.str_m > 0 and params.rng_m > 0:
-                        x = math.floor((char_strength - params.str_c) / params.str_m)
-                    if params.str_m < 0 and params.rng_m < 0:
-                        x = math.ceil((char_strength - params.str_c) / params.str_m)
-                    if params.str_m < 0 and params.rng_m > 0:
-                        x = 95
-                    if params.str_m > 0 and params.rng_m < 0:
-                        x = 5
-                    if x > 95: x=95
-                    if x < 5: x=5
-                    strength = params.str_m*x + params.str_c
-                    rng = params.rng_m*x + params.rng_c
-                    if strength <= char_strength:
-                        str_strength = f'   {strength:.2F}'[-7:]
-                        str_rng = f'   {rng:.2F}'[-7:]
-                        str_dura = f'   {params.dura:.2F}'[-7:]
-                        print(f'|{Type:^10}|{Mechanic:^14}|{leftMat:^15}|{rightMat:^16}|{x:^13}|{str_strength:^10}|{str_rng:^9}|{str_dura:^12}|')
-                        addTableRow(form.tableWidget, [Type, Mechanic, leftMat, rightMat, str(x), str_strength, str_rng, str_dura])
+                    if rightMat != leftMat:
+                        params = BowMatEq(*bowData[f"{Mechanic}_{Type}_{leftMat}_{rightMat}"])
+                        if params.str_m > 0 and params.rng_m > 0:
+                            x = math.floor((char_strength - params.str_c) / params.str_m)
+                        if params.str_m < 0 and params.rng_m < 0:
+                            x = math.ceil((char_strength - params.str_c) / params.str_m)
+                        if params.str_m < 0 and params.rng_m > 0:
+                            x = 95
+                        if params.str_m > 0 and params.rng_m < 0:
+                            x = 5
+                        if x > 95: x=95
+                        if x < 5: x=5
+                        strength = params.str_m*x + params.str_c
+                        rng = params.rng_m*x + params.rng_c
+                        if strength <= char_strength:
+                            str_strength = f'   {strength:.2F}'[-7:]
+                            str_rng = f'   {rng:.2F}'[-7:]
+                            str_dura = f'   {params.dura:.2F}'[-7:]
+                            print(f'|{Type:^10}|{Mechanic:^14}|{leftMat:^15}|{rightMat:^16}|{x:^13}|{str_strength:^10}|{str_rng:^9}|{str_dura:^12}|')
+                            addTableRow(form.tableWidget, [Type, Mechanic, leftMat, rightMat, str(x), str_strength, str_rng, str_dura])
 
 def clear(checked):
     form.tableWidget.setRowCount(0)
