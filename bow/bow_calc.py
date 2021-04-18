@@ -83,26 +83,27 @@ def calculate(checked):
         for Type in bowTypes:
             for leftMat in bowMats:
                 for rightMat in bowMats:
-                    if rightMat != leftMat:
-                        params = BowMatEq(*bowData[f"{Mechanic}_{Type}_{leftMat}_{rightMat}"])
-                        if params.str_m > 0 and params.rng_m > 0:
-                            x = math.floor((char_strength - params.str_c) / params.str_m)
-                        if params.str_m < 0 and params.rng_m < 0:
-                            x = math.ceil((char_strength - params.str_c) / params.str_m)
-                        if params.str_m < 0 and params.rng_m > 0:
-                            x = 95
-                        if params.str_m > 0 and params.rng_m < 0:
-                            x = 5
-                        if x > 95: x=95
-                        if x < 5: x=5
-                        strength = params.str_m*x + params.str_c
-                        rng = params.rng_m*x + params.rng_c
-                        if strength <= char_strength:
-                            str_strength = f'   {strength:.2F}'[-7:]
-                            str_rng = f'   {rng:.2F}'[-7:]
-                            str_dura = f'   {params.dura:.2F}'[-7:]
-                            print(f'|{Type:^10}|{Mechanic:^14}|{leftMat:^15}|{rightMat:^16}|{x:^13}|{str_strength:^10}|{str_rng:^9}|{str_dura:^12}|')
-                            addTableRow(form.tableWidget, [Type, Mechanic, leftMat, rightMat, str(x), str_strength, str_rng, str_dura])
+                    params = BowMatEq(*bowData[f"{Mechanic}_{Type}_{leftMat}_{rightMat}"])
+                    print(params.str_m, params.rng_m)
+                    if params.str_m > 0 and params.rng_m > 0:
+                        print((char_strength - params.str_c) / params.str_m)
+                        x = math.floor((char_strength - params.str_c) / params.str_m)
+                    if params.str_m < 0 and params.rng_m < 0:
+                        x = math.ceil((char_strength - params.str_c) / params.str_m)
+                    if params.str_m < 0 and params.rng_m > 0:
+                        x = 95
+                    if params.str_m > 0 and params.rng_m < 0:
+                        x = 5
+                    if x > 95: x=95
+                    if x < 5: x=5
+                    strength = params.str_m*x + params.str_c
+                    rng = params.rng_m*x + params.rng_c
+                    if strength <= char_strength:
+                        str_strength = f'   {strength:.2F}'[-7:]
+                        str_rng = f'   {rng:.2F}'[-7:]
+                        str_dura = f'   {params.dura:.2F}'[-7:]
+                        print(f'|{Type:^10}|{Mechanic:^14}|{leftMat:^15}|{rightMat:^16}|{x:^13}|{str_strength:^10}|{str_rng:^9}|{str_dura:^12}|')
+                        addTableRow(form.tableWidget, [Type, Mechanic, leftMat, rightMat, str(x), str_strength, str_rng, str_dura])
 
 def clear(checked):
     form.tableWidget.setRowCount(0)
