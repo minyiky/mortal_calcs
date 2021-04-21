@@ -84,7 +84,6 @@ def calculate(checked):
             for leftMat in bowMats:
                 for rightMat in bowMats:
                     params = BowMatEq(*bowData[f"{Mechanic}_{Type}_{leftMat}_{rightMat}"])
-                    print(params.str_m, params.rng_m)
                     if params.str_m > 0 and params.rng_m > 0:
                         print((char_strength - params.str_c) / params.str_m)
                         x = math.floor((char_strength - params.str_c) / params.str_m)
