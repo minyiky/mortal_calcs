@@ -46,6 +46,7 @@ def calculate(checked):
     if form.denseCrepite.isChecked(): bowMats.append('Dense Crepite')
     if form.crepite.isChecked(): bowMats.append('Crepite')
     if form.molarium.isChecked(): bowMats.append('Molarium')
+    if form.emalj.isChecked(): bowMats.append('Emalj')
     if form.greatHorn.isChecked(): bowMats.append('GreatHorn')
     if form.compactHorn.isChecked(): bowMats.append('Compact Horn')
     if form.horn.isChecked(): bowMats.append('Horn')
